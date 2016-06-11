@@ -1227,21 +1227,6 @@ pre {
 .align-right {
   text-align: right; }
 
-.flexblock {
-  display: flex; }
-  .flexblock input[type="submit"] {
-    margin-top: 2em;
-    margin-left: auto; }
-
-.center {
-  margin: 0 auto; }
-
-.w50 {
-  width: 50%; }
-
-@media (min-width: 240px) and (max-width: 767px) {
-  .w50 {
-    width: 95%; } }
 /* Section/Article */
 section.special, article.special {
   text-align: center; }
@@ -1435,12 +1420,6 @@ input[type="radio"] + label:before {
 .formerize-placeholder {
   color: rgba(255, 255, 255, 0.5) !important;
   opacity: 1.0; }
-
-.sign-up {
-  margin-top: 4em; }
-  .sign-up legend {
-    margin-bottom: 1.5em;
-    font-size: 1.5em; }
 
 /* Box */
 .box {
@@ -2702,3 +2681,74 @@ body.is-mobile.landing .wrapper.style4 {
   background-size: cover; }
 body.is-mobile.landing #footer {
   background-color: #1d242a; }
+
+/*OWN STYLE*/
+#header h1 img {
+  background: #000;
+  border: 5px solid #000; }
+
+#header.ui h1 {
+  left: 150px; }
+
+#header.ui .pot {
+  text-transform: uppercase;
+  padding: 0 10px; }
+
+.flexblock {
+  display: flex; }
+  .flexblock input[type="submit"] {
+    margin-top: 2em;
+    margin-left: auto; }
+
+.center {
+  margin: 0 auto; }
+
+.w50 {
+  width: 50%; }
+
+.w90 {
+  width: 90%; }
+
+@media (min-width: 240px) and (max-width: 767px) {
+  .w50 {
+    width: 95%; } }
+.sign-up {
+  margin-top: 4em; }
+  .sign-up legend {
+    margin-bottom: 1.5em;
+    font-size: 1.5em; }
+
+.block-pot {
+  margin: 0 10px; }
+
+.block-pot a {
+  display: block;
+  min-height: 10vh;
+  padding: 20px 25px;
+  background: grey;
+  border-radius: 5px; }
+
+.block-pot a:hover {
+  background: darkgrey; }
+
+[id=view-pot],
+[id=list-pot] {
+  margin-bottom: 4em; }
+  [id=view-pot] h2,
+  [id=list-pot] h2 {
+    padding-top: 1.5em;
+    margin-bottom: 2em; }
+
+.block-view {
+  text-align: center; }
+  .block-view p {
+    margin-bottom: .5em; }
+  .block-view .price {
+    font-size: 2em;
+    font-weight: bold; }
+
+.list-btn li {
+  list-style: none; }
+
+.highcharts {
+  min-height: 20vh; }

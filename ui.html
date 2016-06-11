@@ -4,11 +4,165 @@ title: UI
 ---
 			<section>
 				<nav class="list-ui">
+					<h2>Menu UI</h2>
 					<ul>
-						<li><a href=""></a></li>
-						<li><a href=""></a></li>
+						<li><a href="#list-pot">Listes des pots</a></li>
+						<li><a href="#view-pot">Détail d'un pot</a></li>
 						<li><a href=""></a></li>
 					</ul>
-
 				</nav>
+			</section>
+			<section id="list-pot" class=" center w90">
+				<h2>Pot(s) en favori</h2>
+				<div class="block-list-pot flexblock">
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->	
+				</div><!--/block-list-pot-->
+				<h2>Pot(s) crée(s)</h2>
+				<div class="block-list-pot flexblock">
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->	
+				</div><!--/block-list-pot-->
+				<h2>Pot(s) que je suis</h2>
+				<div class="block-list-pot flexblock">
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->	
+				</div><!--/block-list-pot-->		
+			</section>	
+			<section id="view-pot" class="center w90">
+				<h2>Vue d'un pot (owner)</h2>
+				<div class="flexblock">
+					<div class="block-view w50">
+						<div class="img-pot">
+							<img src="images/pig-pot.png" alt="">
+						</div><!--/-->
+						<div class="total-pot">
+							<p>Montant total du pot</p>
+							<p class="price">3000 €</p>
+						</div><!--/total-pot-->	
+						<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+						<script src="https://code.highcharts.com/highcharts.js"></script>
+						<script src="https://code.highcharts.com/modules/exporting.js"></script>	
+
+						<div id="container" class="center highcharts"></div>
+						<script type="text/javascript">
+							$(function () {
+						    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
+
+						        $('#container').highcharts({
+						            chart: {
+						                zoomType: 'x'
+						            },
+						            title: {
+						                text: 'Dépôt dans le pot'
+						            },
+						            subtitle: {
+						                text: document.ontouchstart === undefined ?
+						                        'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+						            },
+						            xAxis: {
+						                type: 'datetime'
+						            },
+						            yAxis: {
+						                title: {
+						                    text: 'Exchange rate'
+						                }
+						            },
+						            legend: {
+						                enabled: false
+						            },
+						            plotOptions: {
+						                area: {
+						                    fillColor: {
+						                        linearGradient: {
+						                            x1: 0,
+						                            y1: 0,
+						                            x2: 0,
+						                            y2: 1
+						                        },
+						                        stops: [
+						                            [0, Highcharts.getOptions().colors[0]],
+						                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+						                        ]
+						                    },
+						                    marker: {
+						                        radius: 2
+						                    },
+						                    lineWidth: 1,
+						                    states: {
+						                        hover: {
+						                            lineWidth: 1
+						                        }
+						                    },
+						                    threshold: null
+						                }
+						            },
+
+						            series: [{
+						                type: 'area',
+						                name: 'USD to EUR',
+						                data: data
+						            }]
+						        });
+						    });
+						});
+						</script>	
+					</div><!--/block-view-->
+					<div class="block-admin-pot">
+						<div class="invit-pot">
+							<form action="" method="post">
+								<label for="mail-invit">Invitez des Potes</label>
+								<input type="email" id="mail-invit" palceholder="ami@mail.com">
+							</form>
+						</div><!--/invit-pot-->
+						<div class="list-btn">
+							<ul class="flexblock">
+								<li><button>Dépôt</button></li>
+								<li><button>Retirer dépôt</button></li>
+								<li><button>Emprunt</button></li>
+								<li><button>Paiment</button></li>
+							</ul>
+						</div>	
+					</div>	
+				</div>
+
 			</section>	
