@@ -2690,12 +2690,24 @@ body.is-mobile.landing #footer {
 #header.ui h1 {
   left: 150px; }
 
+.thumbs {
+  padding: 0 5px; }
+
+.list-ui {
+  background: #000;
+  width: 15vw;
+  padding: 30px 0 40px; }
+
+.list-ui li {
+  list-style: none; }
+
 #header.ui .pot {
   text-transform: uppercase;
   padding: 0 10px; }
 
 .flexblock {
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
   .flexblock input[type="submit"] {
     margin-top: 2em;
     margin-left: auto; }
@@ -2703,8 +2715,14 @@ body.is-mobile.landing #footer {
 .center {
   margin: 0 auto; }
 
+.w33 {
+  width: 33%; }
+
 .w50 {
   width: 50%; }
+
+.w70 {
+  width: 70%; }
 
 .w90 {
   width: 90%; }
@@ -2718,18 +2736,26 @@ body.is-mobile.landing #footer {
     margin-bottom: 1.5em;
     font-size: 1.5em; }
 
+.block-list-pot {
+  justify-content: space-between; }
+
 .block-pot {
-  margin: 0 10px; }
-
-.block-pot a {
-  display: block;
-  min-height: 10vh;
-  padding: 20px 25px;
-  background: grey;
-  border-radius: 5px; }
-
-.block-pot a:hover {
-  background: darkgrey; }
+  margin-bottom: 10px; }
+  .block-pot a {
+    display: block;
+    min-height: 10vh;
+    padding: 20px 25px;
+    background: grey;
+    border-radius: 5px; }
+  .block-pot a:hover {
+    background: #131313; }
+  .block-pot.block-pot-create h3 {
+    font-size: .7em; }
+  .block-pot.block-pot-create .block-pot-create a {
+    background: darkgrey;
+    border: 1px dashed #000; }
+  .block-pot.block-pot-create .block-pot-create a:hover {
+    background: #131313; }
 
 [id=view-pot],
 [id=list-pot] {
@@ -2747,8 +2773,15 @@ body.is-mobile.landing #footer {
     font-size: 2em;
     font-weight: bold; }
 
-.list-btn li {
-  list-style: none; }
+.block-admin-pot ul {
+  justify-content: space-around;
+  margin: 0;
+  padding: 0; }
+  .block-admin-pot ul li {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 5px;
+    width: 49%; }
 
 .highcharts {
-  min-height: 20vh; }
+  min-height: 50vh; }
