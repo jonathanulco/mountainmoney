@@ -2,6 +2,15 @@ contract Pot {
 
     // Settings for contract, determined at initialization
 
+    // Name of contract
+    string public contractName;
+
+    // Address of factory
+    address public factory;
+
+    // Founder created contract
+    address public founder;
+
     // Multiplier: deposit multiplied by this to determine max loan
     uint public multiplier;
 
@@ -16,9 +25,6 @@ contract Pot {
     // uint public timeToPayBack;
     // uint public rateOfBorrowingDown;
     // uint public rateOfUnanimityForNewMembers;
-
-    // Founder created contract
-    address public founder;
 
     // Members are current members
     enum MemberStatuses { Invited, Member }
@@ -124,6 +130,7 @@ contract Pot {
                 0,
                 name
             ));
+            factory.addContractMember(msg.sender, contractName, this.address);
         }
     }
 
