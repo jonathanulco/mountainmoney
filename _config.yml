@@ -12,11 +12,7 @@ owner: Team 4 Mountain Money # or company name
 first_published: 2016 # if migrating another site, the year of your first publish
 email: your-email@domain.com
 baseurl: "/mountainmoney" # the subpath of your site, e.g. /blog
-<<<<<<< HEAD
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-=======
 url: "http://jonathanulco.github.io/" # the base hostname & protocol for your site
->>>>>>> list-pot
 social:
   twitter: https://twitter.com/mountainmoney
   github: https://github.com/jonathanulco/mountainmoney
