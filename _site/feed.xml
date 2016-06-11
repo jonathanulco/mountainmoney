@@ -7,10 +7,17 @@ Money
     <description>Mountain Montain is a plateform  
 to make a better place.
 </description>
+<<<<<<< HEAD
     <link>http://yourdomain.com/mountainmoney/</link>
     <atom:link href="http://yourdomain.com/mountainmoney/feed.xml" rel="self" type="application/rss+xml"/>
     <pubDate>Sat, 11 Jun 2016 18:14:21 +0200</pubDate>
     <lastBuildDate>Sat, 11 Jun 2016 18:14:21 +0200</lastBuildDate>
+=======
+    <link>http://jonathanulco.github.io//mountainmoney/</link>
+    <atom:link href="http://jonathanulco.github.io//mountainmoney/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 11 Jun 2016 18:27:20 +0200</pubDate>
+    <lastBuildDate>Sat, 11 Jun 2016 18:27:20 +0200</lastBuildDate>
+>>>>>>> list-pot
     <generator>Jekyll v3.1.1</generator>
     
   </channel>
