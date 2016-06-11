@@ -78,9 +78,9 @@ contract Pot {
 
     // Members are current members
     enum MemberStatuses { Invited, Member }
-    mapping(address => MemberStatuses) memberStatus;
+    mapping(address => MemberStatuses) public memberStatus;
 
-    struct  {
+    struct MemberInformation {
         address     memberAddress;
         int         lastTransaction;
         uint        lastTransactionDate;
@@ -132,10 +132,11 @@ contract Pot {
         info.balance = accountBalance[memberAddress];
         if(withdrawal){
             info.totalOut += newAmount;
+            info.lastTransaction = -int(newAmount);
         }else{
             info.totalIn += newAmount;
+            info.lastTransaction = int(newAmount);
         }
-        info.lastTransaction = newAmount;
         info.lastTransactionDate = now;
 
         memberInformation[memberInformationLookup[memberAddress]] = info;
