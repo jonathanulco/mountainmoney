@@ -1,0 +1,24 @@
+<!-- Header -->
+<header id="header"{% if page.layout == 'landing' %} class="alt"{% endif %} class="flexbox">
+  <h1><span><img src="/images/mountain-money-mini.png" alt="mountain money"></span></h1>
+  <div class="pot"><a href="{{ site.baseurl }}/ui.html">Pot</a></div>
+  <nav id="nav" role="navigation">
+    <ul>
+      <li class="special">
+        <a href="#menu" class="menuToggle"><span class="thumbs"><img src="/images/avatar.png" alt=""></span><span>Nom d'utilisateur</span></a>
+        <div id="menu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            {% for my_page in site.pages %}
+            {% if my_page.title %}
+            <li><a href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></li>
+            {% endif %}
+            {% endfor %}
+            <li><a href="#">Sign Up</a></li>
+            <li><a href="#">Log Out</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
