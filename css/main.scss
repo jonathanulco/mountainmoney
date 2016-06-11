@@ -1826,12 +1826,15 @@ $baseurl: '{{ site.baseurl }}/images';
 	}
 	/*OWN STYLE*/
 	#header h1 img {background:#000;border:5px solid #000;}
-	#header.ui h1 {left:150px;}
+	
 	.special span {vertical-align:top;}
 	.thumbs {padding:0 5px;}
 	.list-ui {width:15vw;padding:30px 14px 40px;margin-bottom:4em;background:#000;font-size:.6em;}
 	.list-ui li {list-style:none;}
-	#header.ui .pot {text-transform:uppercase;padding:0 10px;}
+	#header.ui {border-bottom:2px solid #000;
+		h1 {left:150px;}
+		.pot {text-transform:uppercase;padding:0 10px;}
+	}
 	.flexblock {display:flex;flex-wrap:wrap;
         input[type="submit"] {margin-top:2em;margin-left:auto;}
     }
