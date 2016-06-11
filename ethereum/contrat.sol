@@ -14,7 +14,7 @@ contract Pot {
 
     // For later
     // uint public timeToPayBack;
-    // uint public rateOfBorrowing;
+    // uint public rateOfBorrowingDown;
     // uint public rateOfUnanimityForNewMembers;
 
     // Founder created contract
@@ -23,7 +23,17 @@ contract Pot {
     // Members are current members
     enum MemberStatuses { Invited, Member }
     mapping(address => MemberStatuses) memberStatus;
-    address[] memberList;
+
+    struct MemberInformation {
+        address     memberAddress;
+        Transaction lastTransaction;
+        uint        totalOut;
+        uint        totalIn;
+        int        balance;
+        string      name;
+    }
+    MemberInformation[] memberInformation;
+    mapping(address => uint) memberInformationLookup;
 
     // Balances for each member - a signed integer, can be negative
     mapping(address => int) accountBalance;
@@ -48,6 +58,51 @@ contract Pot {
         if(msg.sender != founder) throw;
     }
 
+    function updateAccountState(address memberAddress, uint newAmount, bool withdrawal) internal {
+        var info = memberInformation[memberInformationLookup[memberAddress]];
+
+        info.balance = accountBalance[memberAddress];
+        if(withdrawal){
+            info.totalOut += newAmount;
+        }else{
+            info.totalIn += newAmount;
+        }
+
+        memberInformation[memberInformationLookup[memberAddress]] = info;
+    }
+
+    function maxBorrowAmount(address who) internal returns (int) {
+
+        int borrowBase;
+        // Consider all transactions in user's history
+        // @TODO Consider putting a hard limit on number of transactions
+        // in accountHistory, to not allow someone to consume all the gas
+        for (uint j = 0; j < accountHistory[who].length; j++) {
+            // If the transaction we're considering is a deposit,
+            // check that it is older than six months; if it is not,
+            // do not take it into account. If it is, take it into account.
+
+            // If the transaction is a withdrawal or loan, it is taken
+            // into account no matter when it was.
+            bool A = accountHistory[who][j].amountIntoPot >= 0;
+            bool B = now < accountHistory[who][j].timestamp + waitingWeeks * 1 weeks;
+
+            if(!(A && B)){
+                borrowBase += accountHistory[who][j].amountIntoPot;
+            }
+        }
+
+        // Once we have the base, we multiply it by the factor
+        // defined in the contract terms.
+        var amountCanBorrow = borrowBase * int(multiplier);
+        if(amountCanBorrow > int(this.balance)){
+            throw;
+        }
+
+        return amountCanBorrow;
+
+    }
+
     function invite(address newMember) mustBeFounder() {
         var status = memberStatus[newMember];
         if(status != MemberStatuses.Member && status != MemberStatuses.Invited){
@@ -55,12 +110,20 @@ contract Pot {
         }
     }
 
-    function join() {
+    function join(string name) {
         // Member who has been invited accepts invitation and
         // Becomes a member
         if(memberStatus[msg.sender] == MemberStatuses.Invited){
             memberStatus[msg.sender] = MemberStatuses.Member;
-            memberList.push(msg.sender);
+            memberInformationLookup[msg.sender] = memberInformation.length;
+            memberInformation.push(MemberInformation(
+                msg.sender,
+                Transaction(now, 0),
+                0,
+                0,
+                0,
+                name
+            ));
         }
     }
 
@@ -80,6 +143,8 @@ contract Pot {
 
         // Update account balance for member
         accountBalance[msg.sender] += int(msg.value);
+
+        updateAccountState(msg.sender, msg.value, false);
 
     }
 
@@ -114,6 +179,8 @@ contract Pot {
         // Update the member account balance
         accountBalance[msg.sender] = accountBalance[msg.sender] - int(amount);
 
+        updateAccountState(msg.sender, amount, true);
+
     }
 
     function loan(uint amount) mustBeMember() {
@@ -127,35 +194,9 @@ contract Pot {
           return;
         }
 
-        int borrowBase;
-        // Consider all transactions in user's history
-        // @TODO Consider putting a hard limit on number of transactions
-        // in accountHistory, to not allow someone to consume all the gas
-        for (uint j = 0; j < accountHistory[msg.sender].length; j++) {
-            // If the transaction we're considering is a deposit,
-            // check that it is older than six months; if it is not,
-            // do not take it into account. If it is, take it into account.
-
-            // If the transaction is a withdrawal or loan, it is taken
-            // into account no matter when it was.
-            bool A = accountHistory[msg.sender][j].amountIntoPot >= 0;
-            bool B = now < accountHistory[msg.sender][j].timestamp + waitingWeeks * 1 weeks;
-
-            if(!(A && B)){
-                borrowBase += accountHistory[msg.sender][j].amountIntoPot;
-            }
-        }
-
-        // Once we have the base, we multiply it by the factor
-        // defined in the contract terms.
-        var amountCanBorrow = borrowBase * int(multiplier);
-        if(amountCanBorrow > int(this.balance)){
-            return;
-        }
-
         // If the amount the user wishes to borrow is greater
         // than the amount allowed, do not execute the operation
-        if(int(amount) > amountCanBorrow){
+        if(int(amount) > maxBorrowAmount(msg.sender)){
             return;
         }
 
@@ -171,6 +212,8 @@ contract Pot {
         // Update account balance
         accountBalance[msg.sender] = accountBalance[msg.sender] - int(amount);
 
+        updateAccountState(msg.sender, amount, true);
+
     }
 
     // CALLS: Read only operations
@@ -184,35 +227,10 @@ contract Pot {
 
     }
 
-    function canBorrow() mustBeMember() constant returns (uint) {
+    function canBorrow() mustBeMember() constant returns (int) {
 
-      var borrowBase = int(0);
-      for (uint k = 0; k < accountHistory[msg.sender].length; k++) {
-        if(accountHistory[msg.sender][k].amountIntoPot >= 0){
-            if (now < accountHistory[msg.sender][k].timestamp + waitingWeeks * 1 weeks){
-                continue;
-            }
-        }
-        borrowBase += accountHistory[msg.sender][k].amountIntoPot;
-      }
-
-      if(borrowBase < 0){
-        return 0;
-      }
-
-      var amountCanBorrow = uint(borrowBase) * multiplier;
-      if(amountCanBorrow > this.balance){
-        amountCanBorrow = this.balance;
-      }
-
-      return amountCanBorrow;
+      return maxBorrowAmount(msg.sender);
 
     }
-
-    // function myAccountHistory() constant returns (Transaction[]){
-
-    //   return accountHistory[msg.sender];
-
-    // }
 
 }
