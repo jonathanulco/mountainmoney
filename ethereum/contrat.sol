@@ -5,8 +5,8 @@ contract PotFactory {
         address contractAddress;
     }
 
-    mapping(address => PotContract[]) contractsByFounder;
-    mapping(address => PotContract[]) contractsByMember;
+    mapping(address => PotContract[]) public contractsByFounder;
+    mapping(address => PotContract[]) public contractsByMember;
 
     function createContract (string name, uint multiplier, uint waitingWeeks, uint maxLoan) public {
         var pot = new Pot(name, multiplier, waitingWeeks, maxLoan, msg.sender, this);
@@ -80,15 +80,16 @@ contract Pot {
     enum MemberStatuses { Invited, Member }
     mapping(address => MemberStatuses) memberStatus;
 
-    struct MemberInformation {
+    struct  {
         address     memberAddress;
-        Transaction lastTransaction;
+        int         lastTransaction;
+        uint        lastTransactionDate;
         uint        totalOut;
         uint        totalIn;
-        int        balance;
+        int         balance;
         string      name;
     }
-    MemberInformation[] memberInformation;
+    MemberInformation[] public memberInformation;
     mapping(address => uint) memberInformationLookup;
 
     // Balances for each member - a signed integer, can be negative
@@ -134,6 +135,8 @@ contract Pot {
         }else{
             info.totalIn += newAmount;
         }
+        info.lastTransaction = newAmount;
+        info.lastTransactionDate = now;
 
         memberInformation[memberInformationLookup[memberAddress]] = info;
     }
@@ -185,7 +188,8 @@ contract Pot {
             memberInformationLookup[msg.sender] = memberInformation.length;
             memberInformation.push(MemberInformation(
                 msg.sender,
-                Transaction(now, 0),
+                0,
+                now,
                 0,
                 0,
                 0,
