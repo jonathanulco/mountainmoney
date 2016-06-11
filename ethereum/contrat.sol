@@ -1,3 +1,49 @@
+contract PotFactory {
+
+    struct PotContract {
+        string  name;
+        address address;
+    }
+
+    mapping(address => PotContract[]) contractsByFounder;
+    mapping(address => PotContract[]) contractsByMember;
+
+    function createContract (string name, uint multiplier, uint waitingWeeks, uint maxLoan) {
+        var pot = new Pot(name, multiplier, waitingWeeks, maxLoan, msg.sender, this);
+        contractsByFounder[msg.sender].push(pot);
+    }
+
+    function addContractMember (address who, string contractName, address contractAddress) {
+        contractsByMember[who] = PotContract(
+            contractName;
+            contractAddress;
+        );
+    }
+
+    // READ METHODS for "calls"
+
+    function contractsForSet (PotContract[] set) internal returns (string){
+        string response = '['
+        for (uint j = 0; j < set.length; j++) {
+            var contract = set[j]
+            if(!contract){
+                response += '{name: ' + j.name + ', address:' + string(j.address) + '},';
+            }
+        }
+        response += ']';
+        return response;
+    }
+
+    function contractsForFounder (address who) constant returns (string) {
+        return contractsForSet(contractsByFounder[who]);
+    }
+
+    function contractsForMember (address who) constant returns (string) {
+        return contractsForSet(contractsByMember[who]);
+    }
+
+}
+
 contract Pot {
 
     // Settings for contract, determined at initialization
@@ -53,6 +99,17 @@ contract Pot {
 
     // History of transactions for a user
     mapping(address => Transaction[]) accountHistory;
+
+    // Constructor
+
+    function Pot(string name, uint multiplier, uint waitingWeeks, uint maxLoan, address founder, address factory){
+        name = name;
+        multiplier = multiplier;
+        waitingWeeks = waitingWeeks;
+        maxLoan = maxLoan;
+        founder = founder;
+        factory = factory;
+    }
 
     // TRANSACTIONS: State-altering methods
 
