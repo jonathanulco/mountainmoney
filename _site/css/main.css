@@ -2682,9 +2682,6 @@ body.is-mobile.landing #footer {
   background: #000;
   border: 5px solid #000; }
 
-#header.ui h1 {
-  left: 150px; }
-
 .special span {
   vertical-align: top; }
 
@@ -2701,9 +2698,13 @@ body.is-mobile.landing #footer {
 .list-ui li {
   list-style: none; }
 
-#header.ui .pot {
-  text-transform: uppercase;
-  padding: 0 10px; }
+#header.ui {
+  border-bottom: 2px solid #000; }
+  #header.ui h1 {
+    left: 150px; }
+  #header.ui .pot {
+    text-transform: uppercase;
+    padding: 0 10px; }
 
 .flexblock {
   display: flex;
