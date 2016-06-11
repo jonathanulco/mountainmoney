@@ -2656,7 +2656,7 @@ body.landing #page-wrapper {
   background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg");
   background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg");
   background-attachment: fixed;
-  background-position: center center;
+  background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 0; }
@@ -2743,7 +2743,7 @@ body.is-mobile.landing #footer {
   margin-bottom: 10px; }
   .block-pot a {
     display: block;
-    min-height: 10vh;
+    min-height: 17vh;
     padding: 20px 25px;
     background: grey;
     border-radius: 5px; }
@@ -2782,7 +2782,7 @@ body.is-mobile.landing #footer {
     vertical-align: top; }
   .block-admin-pot table td {
     padding: 0;
-    font-size: .7em;
+    font-size: .9em;
     vertical-align: middle; }
   .block-admin-pot table th {
     vertical-align: baseline;

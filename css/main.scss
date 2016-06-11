@@ -3,6 +3,7 @@
 ---
 
 $baseurl: '{{ site.baseurl }}/images';
+
 @import 'libs/vars';
 @import 'libs/functions';
 @import 'libs/mixins';
@@ -1793,7 +1794,7 @@ $baseurl: '{{ site.baseurl }}/images';
 		#page-wrapper {
 			@include vendor('background-image', ('linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5))', 'url("#{$baseurl}/banner.jpg")'));
 			background-attachment: fixed;
-			background-position: center center;
+			background-position: center top;
 			background-repeat: no-repeat;
 			background-size: cover;
 			padding-top: 0;
@@ -1846,9 +1847,8 @@ $baseurl: '{{ site.baseurl }}/images';
         legend {margin-bottom:1.5em;font-size:1.5em;}
     }
     .block-list-pot {justify-content:space-between;}
-	
 	.block-pot {margin-bottom:10px;
-    	a {display:block;min-height:10vh;padding:20px 25px;background:grey;border-radius:5px;}
+    	a {display:block;min-height:17vh;padding:20px 25px;background:grey;border-radius:5px;}
     	a:hover {background:#131313;}
     	&.block-pot-create {
     		h3 {font-size:.7em;}
@@ -1867,7 +1867,7 @@ $baseurl: '{{ site.baseurl }}/images';
     }
     .block-admin-pot {padding:1em 2em;border-left:1px solid #fefefe;
     	table {font-size:.7em;vertical-align:top;}
-    	table td {padding:0;font-size:.7em;vertical-align:middle;}
+    	table td {padding:0;font-size:.9em;vertical-align:middle;}
     	table th {vertical-align:baseline;padding:0;}
     	table img {margin:0;padding:0;}
     	ul {justify-content:space-around;margin:0;padding:0;}
