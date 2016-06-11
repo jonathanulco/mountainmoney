@@ -1,33 +1,36 @@
 contract PotFactory {
 
     struct PotContract {
-        string  name;
-        address address;
+        string  contractName;
+        address contractAddress;
     }
 
     mapping(address => PotContract[]) contractsByFounder;
     mapping(address => PotContract[]) contractsByMember;
 
-    function createContract (string name, uint multiplier, uint waitingWeeks, uint maxLoan) {
+    function createContract (string name, uint multiplier, uint waitingWeeks, uint maxLoan) public {
         var pot = new Pot(name, multiplier, waitingWeeks, maxLoan, msg.sender, this);
-        contractsByFounder[msg.sender].push(pot);
+        contractsByFounder[msg.sender].push(PotContract(
+            name,
+            pot
+        ));
     }
 
-    function addContractMember (address who, string contractName, address contractAddress) {
-        contractsByMember[who] = PotContract(
-            contractName;
-            contractAddress;
-        );
+    function addContractMember (address who, string contractName, address contractAddress) public {
+        contractsByMember[who].push(PotContract(
+            contractName,
+            contractAddress
+        ));
     }
 
     // READ METHODS for "calls"
-
+    /*  Unneccessary and impossible
     function contractsForSet (PotContract[] set) internal returns (string){
-        string response = '['
+        var response = '[';
         for (uint j = 0; j < set.length; j++) {
-            var contract = set[j]
-            if(!contract){
-                response += '{name: ' + j.name + ', address:' + string(j.address) + '},';
+            var c = set[j];
+            if(c.contractAddress != 0){
+                response += '{name: ' + byte(c.contractName) + ', address:' + byte(c.contractAddress) + '},';
             }
         }
         response += ']';
@@ -41,6 +44,7 @@ contract PotFactory {
     function contractsForMember (address who) constant returns (string) {
         return contractsForSet(contractsByMember[who]);
     }
+    */
 
 }
 
@@ -52,7 +56,7 @@ contract Pot {
     string public contractName;
 
     // Address of factory
-    address public factory;
+    PotFactory public factory;
 
     // Founder created contract
     address public founder;
@@ -187,7 +191,7 @@ contract Pot {
                 0,
                 name
             ));
-            factory.addContractMember(msg.sender, contractName, this.address);
+            factory.addContractMember(msg.sender, contractName, this);
         }
     }
 
