@@ -1834,6 +1834,7 @@ $baseurl: '{{ site.baseurl }}/images';
 	/*OWN STYLE*/
 	#header h1 img {background:#000;border:5px solid #000;}
 	#header.ui h1 {left:150px;}
+	.special span {vertical-align:top;}
 	.thumbs {padding:0 5px;}
 	.list-ui {background:#000;width:15vw;padding:30px 0 40px;}
 	.list-ui li {list-style:none;}
@@ -1872,7 +1873,12 @@ $baseurl: '{{ site.baseurl }}/images';
     	p {margin-bottom:.5em;}
     	.price {font-size:2em;font-weight:bold;}
     }
-    .block-admin-pot ul {justify-content:space-around;margin:0;padding:0;
+    .block-admin-pot {padding:1em 2em;
+    	table {font-size:.7em;vertical-align:top;}
+    	table td {padding:0;font-size:.7em;vertical-align:middle;}
+    	table th {vertical-align:baseline;padding:0;}
+    	table img {margin:0;padding:0;}
+    	ul {justify-content:space-around;margin:0;padding:0;}
     	li {padding:0;list-style:none;margin-bottom:5px;width:49%;}
     }
 	.highcharts {min-height:50vh;}

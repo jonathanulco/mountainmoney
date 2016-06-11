@@ -2690,6 +2690,9 @@ body.is-mobile.landing #footer {
 #header.ui h1 {
   left: 150px; }
 
+.special span {
+  vertical-align: top; }
+
 .thumbs {
   padding: 0 5px; }
 
@@ -2773,11 +2776,26 @@ body.is-mobile.landing #footer {
     font-size: 2em;
     font-weight: bold; }
 
-.block-admin-pot ul {
-  justify-content: space-around;
-  margin: 0;
-  padding: 0; }
-  .block-admin-pot ul li {
+.block-admin-pot {
+  padding: 1em 2em; }
+  .block-admin-pot table {
+    font-size: .7em;
+    vertical-align: top; }
+  .block-admin-pot table td {
+    padding: 0;
+    font-size: .7em;
+    vertical-align: middle; }
+  .block-admin-pot table th {
+    vertical-align: baseline;
+    padding: 0; }
+  .block-admin-pot table img {
+    margin: 0;
+    padding: 0; }
+  .block-admin-pot ul {
+    justify-content: space-around;
+    margin: 0;
+    padding: 0; }
+  .block-admin-pot li {
     padding: 0;
     list-style: none;
     margin-bottom: 5px;
