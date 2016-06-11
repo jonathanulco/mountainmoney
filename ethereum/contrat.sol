@@ -1,3 +1,53 @@
+contract PotFactory {
+
+    struct PotContract {
+        string  contractName;
+        address contractAddress;
+    }
+
+    mapping(address => PotContract[]) public contractsByFounder;
+    mapping(address => PotContract[]) public contractsByMember;
+
+    function createContract (string name, uint multiplier, uint waitingWeeks, uint maxLoan) public {
+        var pot = new Pot(name, multiplier, waitingWeeks, maxLoan, msg.sender, this);
+        contractsByFounder[msg.sender].push(PotContract(
+            name,
+            pot
+        ));
+    }
+
+    function addContractMember (address who, string contractName, address contractAddress) public {
+        contractsByMember[who].push(PotContract(
+            contractName,
+            contractAddress
+        ));
+    }
+
+    // READ METHODS for "calls"
+    /*  Unneccessary and impossible
+    function contractsForSet (PotContract[] set) internal returns (string){
+        var response = '[';
+        for (uint j = 0; j < set.length; j++) {
+            var c = set[j];
+            if(c.contractAddress != 0){
+                response += '{name: ' + byte(c.contractName) + ', address:' + byte(c.contractAddress) + '},';
+            }
+        }
+        response += ']';
+        return response;
+    }
+
+    function contractsForFounder (address who) constant returns (string) {
+        return contractsForSet(contractsByFounder[who]);
+    }
+
+    function contractsForMember (address who) constant returns (string) {
+        return contractsForSet(contractsByMember[who]);
+    }
+    */
+
+}
+
 contract Pot {
 
     // Settings for contract, determined at initialization
@@ -6,7 +56,7 @@ contract Pot {
     string public contractName;
 
     // Address of factory
-    address public factory;
+    PotFactory public factory;
 
     // Founder created contract
     address public founder;
@@ -28,17 +78,18 @@ contract Pot {
 
     // Members are current members
     enum MemberStatuses { Invited, Member }
-    mapping(address => MemberStatuses) memberStatus;
+    mapping(address => MemberStatuses) public memberStatus;
 
     struct MemberInformation {
         address     memberAddress;
-        Transaction lastTransaction;
+        int         lastTransaction;
+        uint        lastTransactionDate;
         uint        totalOut;
         uint        totalIn;
-        int        balance;
+        int         balance;
         string      name;
     }
-    MemberInformation[] memberInformation;
+    MemberInformation[] public memberInformation;
     mapping(address => uint) memberInformationLookup;
 
     // Balances for each member - a signed integer, can be negative
@@ -53,6 +104,17 @@ contract Pot {
 
     // History of transactions for a user
     mapping(address => Transaction[]) accountHistory;
+
+    // Constructor
+
+    function Pot(string name, uint multiplier, uint waitingWeeks, uint maxLoan, address founder, address factory){
+        name = name;
+        multiplier = multiplier;
+        waitingWeeks = waitingWeeks;
+        maxLoan = maxLoan;
+        founder = founder;
+        factory = factory;
+    }
 
     // TRANSACTIONS: State-altering methods
 
@@ -70,9 +132,12 @@ contract Pot {
         info.balance = accountBalance[memberAddress];
         if(withdrawal){
             info.totalOut += newAmount;
+            info.lastTransaction = -int(newAmount);
         }else{
             info.totalIn += newAmount;
+            info.lastTransaction = int(newAmount);
         }
+        info.lastTransactionDate = now;
 
         memberInformation[memberInformationLookup[memberAddress]] = info;
     }
@@ -124,13 +189,14 @@ contract Pot {
             memberInformationLookup[msg.sender] = memberInformation.length;
             memberInformation.push(MemberInformation(
                 msg.sender,
-                Transaction(now, 0),
+                0,
+                now,
                 0,
                 0,
                 0,
                 name
             ));
-            factory.addContractMember(msg.sender, contractName, this.address);
+            factory.addContractMember(msg.sender, contractName, this);
         }
     }
 
