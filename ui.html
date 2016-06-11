@@ -4,11 +4,229 @@ title: UI
 ---
 			<section>
 				<nav class="list-ui">
+					<h2>Menu UI</h2>
 					<ul>
-						<li><a href=""></a></li>
-						<li><a href=""></a></li>
+						<li><a href="#list-pot">Listes des pots</a></li>
+						<li><a href="#view-pot">Détail d'un pot</a></li>
 						<li><a href=""></a></li>
 					</ul>
-
 				</nav>
+			</section>
+			<section id="list-pot" class=" center w70">
+				<h1>Listes des pot(s)</h1>
+				<h2>Pot(s) en favori</h2>
+				<div class="block-list-pot flexblock">
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 2</h3>
+						</a>
+					</div><!--/block-pot-->
+					
+
+				</div><!--/block-list-pot-->
+				<h2>Pot(s) crée(s)</h2>
+				<div class="block-list-pot flexblock">
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 2</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot block-pot-create w33">
+						<a href="">
+							<h3>Créer un nouveau pot <span>+</span></h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 3</h3>
+						</a>
+					</div><!--/block-pot-->	
+				</div><!--/block-list-pot-->
+				<h2>Pot(s) que je suis</h2>
+				<div class="block-list-pot flexblock">
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 1</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 2</h3>
+						</a>
+					</div><!--/block-pot-->
+					<div class="block-pot w33">
+						<a href="">
+							<h3>Pot 3</h3>
+						</a>
+					</div><!--/block-pot-->	
+				</div><!--/block-list-pot-->		
+			</section>	
+			<section id="view-pot" class="center w70">
+				<h1>Vue d'un pot (owner)</h1>
+				<div class="flexblock">
+					<div class="block-view w50">
+						<div class="img-pot">
+							<img src="images/pig-pot.png" alt="">
+						</div><!--/-->
+						<div class="total-pot">
+							<p>Montant total du pot</p>
+							<p class="price">7050 €</p>
+						</div><!--/total-pot-->	
+						<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+						<script src="https://code.highcharts.com/highcharts.js"></script>
+						<script src="https://code.highcharts.com/modules/exporting.js"></script>	
+
+						<div id="container" class="center highcharts"></div>
+						<script type="text/javascript">
+							$(function () {
+							    $(document).ready(function () {
+							        Highcharts.setOptions({
+							            global: {
+							                useUTC: false
+							            }
+							        });
+
+							        var chart = new Highcharts.Chart({
+							            chart: {
+							            	renderTo: 'container',
+							                type: 'spline',
+							                animation: Highcharts.svg, // don't animate in old IE
+							                marginRight: 10,
+							                events: {
+							                    load: function () {
+
+							                        // set up the updating of the chart each second
+							                        var series = this.series[0];
+							                        setInterval(function () {
+							                            var x = (new Date()).getTime(), // current time
+							                                y = Math.random();
+							                            series.addPoint([x, y], true, true);
+							                        }, 1000);
+							                    }
+							                }
+							            },
+							            title: {
+							                text: 'Live random data'
+							            },
+							            xAxis: {
+							                type: 'datetime',
+							                tickPixelInterval: 150
+							            },
+							            yAxis: {
+							                title: {
+							                    text: 'Value'
+							                },
+							                plotLines: [{
+							                    value: 0,
+							                    width: 1,
+							                    color: '#131313'
+							                }]
+							            },
+							            tooltip: {
+							                formatter: function () {
+							                    return '<b>' + this.series.name + '</b><br/>' +
+							                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+							                        Highcharts.numberFormat(this.y, 2);
+							                }
+							            },
+							            legend: {
+							                enabled: false
+							            },
+							            exporting: {
+							                enabled: false
+							            },
+							            series: [{
+							                name: 'Random data',
+							                data: (function () {
+							                    // generate an array of random data
+							                    var data = [],
+							                        time = (new Date()).getTime(),
+							                        i;
+
+							                    for (i = -19; i <= 0; i += 1) {
+							                        data.push({
+							                            x: time + i * 1000,
+							                            y: Math.random()
+							                        });
+							                    }
+							                    return data;
+							                }())
+							            }]
+							        });
+							    });
+							});
+						</script>	
+					</div><!--/block-view-->
+					<div class="block-admin-pot w50">
+						<div class="table-invit">
+							<table>
+								<thead>
+									<tr>
+										<th>&nbsp</th>
+										<th>Mes potes</th>
+										<th>Dernier don</th>
+										<th>Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><img src="/images/bertram.jpg" width="50" alt=""></td>
+										<td>Bertram Gilfoyle</td>
+										<td>+ 40 €</td>
+										<td>800 €</td>
+									</tr>
+									<tr>
+										<td><img src="/images/richard.jpg" width="50" alt=""></td>
+										<td>Richard Hendricks3</td>
+										<td>+ 70 €</td>
+										<td>1400 €</td>
+									</tr>
+									<tr>
+										<td><img src="/images/jared.jpg" width="50" alt=""></td>
+										<td>Donald « Jared » Dunn</td>
+										<td>+ 35 €</td>
+										<td>945 €</td>
+									</tr>
+									<tr>
+										<td><img src="/images/erlich.jpg" width="50" alt=""></td>
+										<td>Elrich Bachman</td>
+										<td>+ 100 €</td>
+										<td>2200 €</td>
+									</tr>
+									<tr>
+										<td><img src="/images/laurie.jpg" width="50" alt=""></td>
+										<td>Laurie Bream</td>
+										<td>+ 175 €</td>
+										<td>1705 €</td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!--/table-invit-->	
+						<div class="invit-pot">
+							<form action="" method="post">
+								<label for="mail-invit">Invitez des Potes</label>
+								<input type="email" id="mail-invit" palceholder="Dinesh ">
+							</form>
+						</div><!--/invit-pot-->
+						<div class="list-btn">
+							<ul class="flexblock">
+								<li><button>Dépôt</button></li>
+								<li><button>Retirer dépôt</button></li>
+								<li><button>Emprunt</button></li>
+								<li><button>Paiment</button></li>
+							</ul>
+						</div>	
+					</div>	
+				</div>
+
 			</section>	
