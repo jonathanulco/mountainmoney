@@ -1,41 +1,66 @@
 /*
-Error: Invalid CSS after "...ort 'libs/vars'": expected "{", was ";"
-        on line 5 of /home/waratah/workspace/moutain-of-money/css/ie8.scss
-
-1: ---
-2: # Only the main Sass file needs front matter (the dashes are enough)
-3: ---
-4: 
-5: @import 'libs/vars';
-6: @import 'libs/functions';
-7: @import 'libs/mixins';
-8: @import 'libs/skel';
-9: 
-10: /*
-
-Backtrace:
-/home/waratah/workspace/moutain-of-money/css/ie8.scss:5
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:1165:in `expected'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:1101:in `expected'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:1096:in `tok!'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:641:in `block'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:635:in `ruleset'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:660:in `block_child'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:650:in `block_contents'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:117:in `stylesheet'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:42:in `parse'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:393:in `_to_tree'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:368:in `_render_with_sourcemap'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:285:in `render_with_sourcemap'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:396:in `run'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:62:in `process_result'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
-/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
-/usr/share/koala/rubygems/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
-/usr/share/koala/bin/sass:18:in `load'
-/usr/share/koala/bin/sass:18:in `<main>'
+	Spectral by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"...ort 'libs/vars'\": expected \"{\", was \";\"\A         on line 5 of /home/waratah/workspace/moutain-of-money/css/ie8.scss\A \A 1: ---\A 2: # Only the main Sass file needs front matter (the dashes are enough)\A 3: ---\A 4: \A 5: @import 'libs/vars';\A 6: @import 'libs/functions';\A 7: @import 'libs/mixins';\A 8: @import 'libs/skel';\A 9: \A 10: /*"; }
+/* Icon */
+.icon.major {
+  border: none; }
+  .icon.major:before {
+    font-size: 3em; }
+
+/* Form */
+label {
+  color: #2E3842; }
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select,
+textarea {
+  border: solid 1px #dfdfdf; }
+
+/* Button */
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,
+.button {
+  border: solid 2px #dfdfdf; }
+  input[type="submit"].special,
+  input[type="reset"].special,
+  input[type="button"].special,
+  button.special,
+  .button.special {
+    border: 0 !important; }
+
+/* Page Wrapper + Menu */
+#menu {
+  display: none; }
+
+body.is-menu-visible #menu {
+  display: block; }
+
+/* Header */
+#header nav > ul > li > a.menuToggle:after {
+  display: none; }
+
+/* Banner + Wrapper (style4) */
+#banner,
+.wrapper.style4 {
+  -ms-behavior: url("js/ie/backgroundsize.min.htc"); }
+  #banner:before,
+  .wrapper.style4:before {
+    display: none; }
+
+/* Banner */
+#banner .more {
+  height: 4em; }
+  #banner .more:after {
+    display: none; }
+
+/* Main */
+#main > header {
+  -ms-behavior: url("js/ie/backgroundsize.min.htc"); }
+  #main > header:before {
+    display: none; }
