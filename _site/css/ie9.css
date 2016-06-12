@@ -1,88 +1,41 @@
 /*
-	Spectral by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Error: Invalid CSS after "...ort 'libs/vars'": expected "{", was ";"
+        on line 5 of /home/waratah/workspace/moutain-of-money/css/ie9.scss
+
+1: ---
+2: # Only the main Sass file needs front matter (the dashes are enough)
+3: ---
+4: 
+5: @import 'libs/vars';
+6: @import 'libs/functions';
+7: @import 'libs/mixins';
+8: @import 'libs/skel';
+9: 
+10: /*
+
+Backtrace:
+/home/waratah/workspace/moutain-of-money/css/ie9.scss:5
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:1165:in `expected'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:1101:in `expected'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:1096:in `tok!'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:641:in `block'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:635:in `ruleset'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:660:in `block_child'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:650:in `block_contents'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:117:in `stylesheet'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:42:in `parse'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:393:in `_to_tree'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:368:in `_render_with_sourcemap'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:285:in `render_with_sourcemap'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:396:in `run'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:62:in `process_result'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
+/usr/share/koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
+/usr/share/koala/rubygems/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
+/usr/share/koala/bin/sass:18:in `load'
+/usr/share/koala/bin/sass:18:in `<main>'
 */
-/* Spotlight */
-.spotlight {
-  display: block; }
-  .spotlight .image {
-    display: inline-block;
-    vertical-align: top; }
-  .spotlight .content {
-    padding: 4em 4em 2em 4em ;
-    display: inline-block; }
-  .spotlight:after {
-    clear: both;
-    content: '';
-    display: block; }
-
-/* Features */
-.features {
-  display: block; }
-  .features li {
-    float: left; }
-  .features:after {
-    content: '';
-    display: block;
-    clear: both; }
-
-/* Banner + Wrapper (style4) */
-#banner,
-.wrapper.style4 {
-  background-image: url("../../images/banner.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative; }
-  #banner:before,
-  .wrapper.style4:before {
-    background: #000000;
-    content: '';
-    height: 100%;
-    left: 0;
-    opacity: 0.5;
-    position: absolute;
-    top: 0;
-    width: 100%; }
-  #banner .inner,
-  .wrapper.style4 .inner {
-    position: relative;
-    z-index: 1; }
-
-/* Banner */
-#banner {
-  padding: 14em 0 12em 0 ;
-  height: auto; }
-  #banner:after {
-    display: none; }
-
-/* CTA */
-#cta .inner header {
-  float: left; }
-#cta .inner .actions {
-  float: left; }
-#cta .inner:after {
-  clear: both;
-  content: '';
-  display: block; }
-
-/* Main */
-#main > header {
-  background-image: url("../../images/banner.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative; }
-  #main > header:before {
-    background: #000000;
-    content: '';
-    height: 100%;
-    left: 0;
-    opacity: 0.5;
-    position: absolute;
-    top: 0;
-    width: 100%; }
-  #main > header > * {
-    position: relative;
-    z-index: 1; }
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"...ort 'libs/vars'\": expected \"{\", was \";\"\A         on line 5 of /home/waratah/workspace/moutain-of-money/css/ie9.scss\A \A 1: ---\A 2: # Only the main Sass file needs front matter (the dashes are enough)\A 3: ---\A 4: \A 5: @import 'libs/vars';\A 6: @import 'libs/functions';\A 7: @import 'libs/mixins';\A 8: @import 'libs/skel';\A 9: \A 10: /*"; }
